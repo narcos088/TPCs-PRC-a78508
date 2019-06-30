@@ -1,0 +1,191 @@
+@prefix : <http://www.semanticweb.org/prc/2019/Turismo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/prc/2019/Turismo> .
+
+<http://www.semanticweb.org/prc/2019/Turismo> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/prc/2019/Turismo#fazParte
+:fazParte rdf:type owl:ObjectProperty ;
+          owl:inverseOf :temAtracao .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#temAtividade
+:temAtividade rdf:type owl:ObjectProperty ;
+              rdfs:domain :Cidade ,
+                          :Instituição ,
+                          :SuporteTurismo ;
+              rdfs:range :Atividade .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#temAtracao
+:temAtracao rdf:type owl:ObjectProperty ;
+            rdfs:domain :PasseioTuristico ;
+            rdfs:range :Atividade ,
+                       :Evento ,
+                       :Instituição .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#temEvento
+:temEvento rdf:type owl:ObjectProperty ;
+           rdfs:domain :Cidade ,
+                       :Instituição ,
+                       :SuporteTurismo ;
+           rdfs:range :Evento .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/prc/2019/Turismo#data
+:data rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Atividade ,
+                  :Evento ,
+                  :PasseioTuristico ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#morada
+:morada rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Hotel ,
+                    :Instituição ,
+                    :Restaurante ;
+        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#nome
+:nome rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#sinonimo
+:sinonimo rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Cidade ;
+          rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Atividade
+:Atividade rdf:type owl:Class ;
+           rdfs:subClassOf :Atração .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Atração
+:Atração rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Cidade
+:Cidade rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Evento
+:Evento rdf:type owl:Class ;
+        rdfs:subClassOf :Atração .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Hotel
+:Hotel rdf:type owl:Class ;
+       rdfs:subClassOf :SuporteTurismo .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Instituição
+:Instituição rdf:type owl:Class ;
+             rdfs:subClassOf :Atração .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#PasseioTuristico
+:PasseioTuristico rdf:type owl:Class ;
+                  rdfs:subClassOf :Atração .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Restaurante
+:Restaurante rdf:type owl:Class ;
+             rdfs:subClassOf :SuporteTurismo .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#SuporteTurismo
+:SuporteTurismo rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Transporte
+:Transporte rdf:type owl:Class ;
+            rdfs:subClassOf :SuporteTurismo .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/prc/2019/Turismo#Braga
+:Braga rdf:type owl:NamedIndividual ,
+                :Cidade ;
+       :nome "Braga" ;
+       :sinonimo "Bracara Augusta" ,
+                 "Cidade Barroca" ,
+                 "Cidade Romana" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#BragaRomana
+:BragaRomana rdf:type owl:NamedIndividual ,
+                      :Evento ;
+             :nome "Braga Romana" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#PasseioTuristico
+:PasseioTuristico rdf:type owl:NamedIndividual ,
+                           :PasseioTuristico ;
+                  :temAtracao :atividade1 ,
+                              :monumento ,
+                              :museu .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#SemanaSanta
+:SemanaSanta rdf:type owl:NamedIndividual ,
+                      :Evento ;
+             :nome "Semana Santa" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#atividade1
+:atividade1 rdf:type owl:NamedIndividual ,
+                     :Atividade ;
+            :nome "Corrida" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#hotel
+:hotel rdf:type owl:NamedIndividual ,
+                :Hotel ;
+       :morada "Braga" ;
+       :nome "BragaHotel" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#monumento
+:monumento rdf:type owl:NamedIndividual ,
+                    :Instituição ;
+           :nome "Monumento de Braga" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#museu
+:museu rdf:type owl:NamedIndividual ,
+                :Instituição ;
+       :morada "Centro de Turismo" ;
+       :nome "BragaMuseu" .
+
+
+###  http://www.semanticweb.org/prc/2019/Turismo#restaurante
+:restaurante rdf:type owl:NamedIndividual ,
+                      :Restaurante ;
+             :morada "Braga Central" ;
+             :nome "CentBrag" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
